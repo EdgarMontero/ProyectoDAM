@@ -251,8 +251,6 @@ public class HistorialPaciente extends Fragment {
         getActivity().runOnUiThread(() -> {
             updateListView(response);
         });
-
-
     }
 
     private void updateListView(String jsonData) {

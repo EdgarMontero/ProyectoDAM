@@ -17,34 +17,34 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="Historial de Paciente" />
+            android:text="@string/HistorialdePaciente" />
 
         <Button
             android:id="@+id/btnCrearConsulta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="Crear Consulta" />
+            android:text="@string/CrearConsulta" />
 
         <Button
             android:id="@+id/btnEditarPaciente"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="Editar Paciente" />
+            android:text="@string/EditarPaciente" />
 
         <Button
             android:id="@+id/btnAgenda"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="Agenda" />
+            android:text="@string/Agenda" />
 
         <Button
             android:id="@+id/btnCrearPaciente"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="Crear Paciente" />
+            android:text="@string/CrearPaciente" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

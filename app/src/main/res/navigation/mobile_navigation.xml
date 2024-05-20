@@ -31,7 +31,11 @@
         android:id="@+id/nav_historial"
         android:name="com.edgarmontero.proyectoDam.ui.HistorialPaciente"
         android:label="@string/menu_historial"
-        tools:layout="@layout/fragment_historial_paciente" />
+        tools:layout="@layout/fragment_historial_paciente" >
+        <action
+            android:id="@+id/action_nav_historial_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_crear_consulta"
@@ -57,7 +61,11 @@
         android:id="@+id/nav_agenda"
         android:name="com.edgarmontero.proyectoDam.ui.Agenda"
         android:label="@string/menu_agenda"
-        tools:layout="@layout/fragment_agenda" />
+        tools:layout="@layout/fragment_agenda" >
+        <action
+            android:id="@+id/action_nav_agenda_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_crear_paciente"

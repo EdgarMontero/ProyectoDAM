@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
                     BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
                     String data = URLEncoder.encode("username", "UTF-8") + "=" + URLEncoder.encode(username, "UTF-8");
                     data += "&" + URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode(password, "UTF-8");
+                    data += "&" + URLEncoder.encode("type", "UTF-8") + "=" + URLEncoder.encode("medico", "UTF-8");
 
                     writer.write(data);
                     writer.flush();
