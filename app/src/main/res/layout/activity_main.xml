@@ -38,7 +38,7 @@
             android:layout_width="131dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Login" />
+            android:text="@string/login" />
 
     </LinearLayout>
 

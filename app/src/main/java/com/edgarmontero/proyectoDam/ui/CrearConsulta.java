@@ -1,6 +1,7 @@
 package com.edgarmontero.proyectoDam.ui;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -54,16 +55,28 @@ public class CrearConsulta extends Fragment {
         binding.btnCrearConsulta.setOnClickListener(v -> crearConsulta(etpacienteId.getText().toString(), ettipoConsulta.getText().toString(), etdescripcion.getText().toString(), etfecha.getText().toString()));
 
         etfecha.setOnClickListener(view -> {
+            // Obtiene la fecha y hora actuales
             Calendar calendario = Calendar.getInstance();
             int year = calendario.get(Calendar.YEAR);
             int month = calendario.get(Calendar.MONTH);
             int day = calendario.get(Calendar.DAY_OF_MONTH);
+            int hour = calendario.get(Calendar.HOUR_OF_DAY);
+            int minute = calendario.get(Calendar.MINUTE);
 
+            // Crea el DatePickerDialog y establece el listener para la fecha seleccionada
             DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(),
                     (datePicker, year1, monthOfYear, dayOfMonth) -> {
-                        String fechaSeleccionada = String.format("%04d-%02d-%02d", year1, monthOfYear + 1, dayOfMonth);
-                        etfecha.setText(fechaSeleccionada);
+                        // Una vez que se ha seleccionado la fecha, crea y muestra el TimePickerDialog
+                        TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(),
+                                (timePicker, hourOfDay, minuteOfHour) -> {
+                                    // Formatea la fecha y hora seleccionadas y las establece en el EditText
+                                    String fechaSeleccionada = String.format("%04d-%02d-%02d %02d:%02d:%02d", year1, monthOfYear + 1, dayOfMonth, hourOfDay, minuteOfHour, 0);
+                                    etfecha.setText(fechaSeleccionada);
+                                }, hour, minute, true);
+                        timePickerDialog.show();
                     }, year, month, day);
+
+            // Muestra el DatePickerDialog
             datePickerDialog.show();
         });
     }

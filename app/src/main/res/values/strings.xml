@@ -44,5 +44,9 @@
     <string name="EditarPaciente">Editar Paciente</string>
     <string name="Agenda">Agenda</string>
     <string name="CrearPaciente">Crear Paciente</string>
+    <string name="tipo_consulta">Tipo de Consulta</string>
+    <string name="descripcion_consulta">Descripcion de la consulta</string>
+    <string name="fecha_consulta">Fecha de la cconsulta</string>
+    <string name="login">Login</string>
 
 </resources>
