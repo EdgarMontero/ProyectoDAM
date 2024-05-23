@@ -18,6 +18,7 @@
 
         </LinearLayout>
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -51,6 +52,13 @@
                 android:layout_height="wrap_content"
                 android:text="@string/filtrar" />
         </LinearLayout>
+
+        <Spinner
+            android:id="@+id/spinnerEstadoConsulta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:entries="@array/estado_consulta_buscar_options" />
 
         <ListView
             android:id="@+id/listViewConsultas"

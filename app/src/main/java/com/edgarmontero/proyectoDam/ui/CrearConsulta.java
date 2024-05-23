@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.edgarmontero.proyectoDam.R;
@@ -51,8 +52,12 @@ public class CrearConsulta extends Fragment {
         final EditText ettipoConsulta = binding.etTipoConsulta;
         final EditText etdescripcion = binding.etDescripcionConsulta;
         final EditText etfecha = binding.etFechaConsulta;
+        final Spinner spinnerEstadoConsulta = binding.spinnerEstadoConsulta;
 
-        binding.btnCrearConsulta.setOnClickListener(v -> crearConsulta(etpacienteId.getText().toString(), ettipoConsulta.getText().toString(), etdescripcion.getText().toString(), etfecha.getText().toString()));
+        binding.btnCrearConsulta.setOnClickListener(v -> {
+            String estadoConsulta = spinnerEstadoConsulta.getSelectedItem().toString();
+            crearConsulta(etpacienteId.getText().toString(), ettipoConsulta.getText().toString(), etdescripcion.getText().toString(), etfecha.getText().toString(), estadoConsulta);
+        });
 
         etfecha.setOnClickListener(view -> {
             // Obtiene la fecha y hora actuales
@@ -81,12 +86,11 @@ public class CrearConsulta extends Fragment {
         });
     }
 
-    private void crearConsulta(String pacienteId, String tipoConsulta, String descripcion, String fecha) {
+    private void crearConsulta(String pacienteId, String tipoConsulta, String descripcion, String fecha, String estadoConsulta) {
         if (areFieldsValid(pacienteId, tipoConsulta, descripcion, fecha)) {
-            crearConsultaData(pacienteId, tipoConsulta, descripcion, fecha);
+            crearConsultaData(pacienteId, tipoConsulta, descripcion, fecha, estadoConsulta);
         }
     }
-
 
     private boolean areFieldsValid(String pacienteId, String tipoConsulta, String descripcion, String fecha) {
         Context context = getContext();
@@ -105,7 +109,7 @@ public class CrearConsulta extends Fragment {
         return true;
     }
 
-    private void crearConsultaData(String pacienteId, String tipoConsulta, String descripcion, String fecha) {
+    private void crearConsultaData(String pacienteId, String tipoConsulta, String descripcion, String fecha, String estadoConsulta) {
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         String dniMedico = sharedPreferences.getString("dni_medico", "");
 
@@ -124,6 +128,7 @@ public class CrearConsulta extends Fragment {
                 data += "&" + URLEncoder.encode("tipo_consulta", "UTF-8") + "=" + URLEncoder.encode(tipoConsulta, "UTF-8");
                 data += "&" + URLEncoder.encode("descripcion", "UTF-8") + "=" + URLEncoder.encode(descripcion, "UTF-8");
                 data += "&" + URLEncoder.encode("fecha", "UTF-8") + "=" + URLEncoder.encode(fecha, "UTF-8");
+                data += "&" + URLEncoder.encode("estado_consulta", "UTF-8") + "=" + URLEncoder.encode(estadoConsulta, "UTF-8");
 
                 writer.write(data);
                 writer.flush();
@@ -141,7 +146,6 @@ public class CrearConsulta extends Fragment {
         });
         thread.start();
     }
-
 
     private void processServerResponse(HttpURLConnection conn) throws IOException {
         InputStream in = conn.getInputStream();

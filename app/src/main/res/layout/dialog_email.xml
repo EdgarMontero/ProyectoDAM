@@ -6,31 +6,23 @@
     android:padding="16dp">
 
     <EditText
-        android:id="@+id/editTextTipoConsulta"
+        android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Tipo de Consulta" />
+        android:hint="Email" />
 
     <EditText
-        android:id="@+id/editTextDescripcionConsulta"
+        android:id="@+id/asunto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="Asunto" />
+
+    <EditText
+        android:id="@+id/contenido"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Contenido del email"
+        android:inputType="textMultiLine"
         android:minLines="3"
-        android:gravity="top"
-        android:hint="Descripción" />
-
-    <EditText
-        android:id="@+id/editTextFechaConsulta"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Fecha" />
-
-    <Spinner
-        android:id="@+id/spinnerEstadoConsulta"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="12dp"
-        android:entries="@array/estado_consulta_options" />
-
-
+        android:gravity="top" />
 </LinearLayout>

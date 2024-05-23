@@ -1,6 +1,7 @@
 package com.edgarmontero.proyectoDam;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -22,12 +23,24 @@ import java.net.URLEncoder;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String PREFERENCES_FILE = "com.edgarmontero.proyectoDam.preferences";
+    private static final String DARK_MODE_KEY = "dark_mode_enabled";
+
     private EditText usernameEditText;
     private EditText passwordEditText;
     private Button loginButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Check saved preferences for dark mode
+        SharedPreferences preferences = getSharedPreferences(PREFERENCES_FILE, MODE_PRIVATE);
+        boolean isDarkModeEnabled = preferences.getBoolean(DARK_MODE_KEY, false);
+        if (isDarkModeEnabled) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -50,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    URL url = new URL(getString(R.string.ip)+"login.php");
+                    URL url = new URL(getString(R.string.ip) + "login.php");
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("POST");
                     conn.setDoOutput(true);
@@ -110,5 +123,4 @@ public class MainActivity extends AppCompatActivity {
 
         thread.start();
     }
-
 }

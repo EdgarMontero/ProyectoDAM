@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    android:background="#FAFAFA"
     tools:context=".ui.EditarPaciente">
 
     <!-- Elementos para buscar al paciente -->

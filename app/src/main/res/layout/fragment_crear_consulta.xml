@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    android:background="#FAFAFA"
     tools:context=".ui.CrearConsulta">
 
     <EditText
@@ -26,7 +25,8 @@
         android:inputType="text"
         android:drawableStart="@drawable/ic_assignment_black_24dp"
         android:drawablePadding="10dp"
-        android:padding="12dp" />
+        android:padding="12dp"
+        />
 
     <EditText
         android:id="@+id/etDescripcionConsulta"
@@ -36,7 +36,8 @@
         android:inputType="textMultiLine"
         android:drawableStart="@drawable/ic_description_black_24dp"
         android:drawablePadding="10dp"
-        android:padding="12dp" />
+        android:padding="12dp"
+        />
 
     <EditText
         android:id="@+id/etFechaConsulta"
@@ -50,11 +51,18 @@
         android:drawablePadding="10dp"
         android:padding="12dp" />
 
+    <Spinner
+        android:id="@+id/spinnerEstadoConsulta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:entries="@array/estado_consulta_options" />
+
     <Button
         android:id="@+id/btnCrearConsulta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/CrearConsulta"
+        android:text="@string/crear_consulta"
         android:background="@color/black"
         android:textColor="#FFFFFF"
         android:padding="12dp" />

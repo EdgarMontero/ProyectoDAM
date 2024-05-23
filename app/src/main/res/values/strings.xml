@@ -26,11 +26,6 @@
 
     <string name="ip">http://10.0.2.2/api/</string>
 
-    <string name="loginURL">http://192.168.1.15/api/login.php</string>
-    <string name="fetchUsersURL">http://192.168.1.15/api/fetchUsers.php</string>
-    <string name="guardarPacienteURL">http://192.168.1.15/api/guardarPaciente.php</string>
-    <string name="buscarPacienteURL">http://192.168.1.15/api/buscarPaciente.php</string>
-
     <string name="buscar_usuario">Introducir DNI del paciente</string>
     <string name="buscar">Buscar</string>
     <string name="username">Nombre de usuario</string>
@@ -39,14 +34,45 @@
     <string name="fecha_inicio">Fecha inicio</string>
     <string name="fecha_fin">Fecha final</string>
     <string name="filtrar">Filtrar</string>
-    <string name="HistorialdePaciente">Historial de Paciente</string>
-    <string name="CrearConsulta">Crear Consulta</string>
-    <string name="EditarPaciente">Editar Paciente</string>
-    <string name="Agenda">Agenda</string>
-    <string name="CrearPaciente">Crear Paciente</string>
+    <string name="historial_de_paciente">Historial de Paciente</string>
+    <string name="crear_consulta">Crear Consulta</string>
+    <string name="editar_paciente">Editar Paciente</string>
+    <string name="agenda">Agenda</string>
+    <string name="crear_paciente">Crear Paciente</string>
     <string name="tipo_consulta">Tipo de Consulta</string>
     <string name="descripcion_consulta">Descripcion de la consulta</string>
-    <string name="fecha_consulta">Fecha de la cconsulta</string>
+    <string name="fecha_consulta">Fecha de la consulta</string>
     <string name="login">Login</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="ajustes">Ajustes</string>
+    <string name="notificaciones">Notificaciones</string>
+    <string name="permitir_notificaciones">Permitir notificaciones</string>
+    <string name="apariencia">Apariencia</string>
+    <string name="habilitar_moso_oscuro">Habilitar el modo oscuro</string>
+
+    <string-array name="estado_consulta_options">
+        <item>pendiente</item>
+        <item>aceptada</item>
+        <item>cancelada</item>
+        <item>finalizada</item>
+    </string-array>
+
+    <string-array name="estado_consulta_buscar_options">
+        <item>Todos</item>
+        <item>pendiente</item>
+        <item>aceptada</item>
+        <item>cancelada</item>
+        <item>finalizada</item>
+    </string-array>
+
 
 </resources>

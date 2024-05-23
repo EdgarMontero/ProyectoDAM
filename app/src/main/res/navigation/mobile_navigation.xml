@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_nav_home_to_nav_crear_paciente"
             app:destination="@id/nav_crear_paciente" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_ajustes"
+            app:destination="@id/nav_ajustes" />
     </fragment>
 
     <fragment
@@ -74,6 +77,16 @@
         tools:layout="@layout/fragment_crear_paciente" >
         <action
             android:id="@+id/action_nav_crear_paciente_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_ajustes"
+        android:name="com.edgarmontero.proyectoDam.ui.Ajustes"
+        android:label="@string/ajustes"
+        tools:layout="@layout/fragment_ajustes" >
+        <action
+            android:id="@+id/action_nav_ajustes_to_nav_home"
             app:destination="@id/nav_home" />
     </fragment>
 
