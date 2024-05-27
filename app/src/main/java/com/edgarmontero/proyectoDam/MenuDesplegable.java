@@ -118,6 +118,12 @@ public class MenuDesplegable extends AppCompatActivity {
             return true;
         }
 
+        if (id == R.id.action_editar_perfil) {
+            NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_menu_desplegable);
+            navController.navigate(R.id.nav_editar_perfil);
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 

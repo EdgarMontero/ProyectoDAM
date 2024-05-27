@@ -90,4 +90,14 @@
             app:destination="@id/nav_home" />
     </fragment>
 
+    <fragment
+        android:id="@+id/nav_editar_perfil"
+        android:name="com.edgarmontero.proyectoDam.ui.EditarPerfilFragment"
+        android:label="@string/editar_perfil"
+        tools:layout="@layout/fragment_editar_perfil" >
+        <action
+            android:id="@+id/action_nav_editar_perfil_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
+
 </navigation>

@@ -58,6 +58,10 @@
     <string name="permitir_notificaciones">Permitir notificaciones</string>
     <string name="apariencia">Apariencia</string>
     <string name="habilitar_moso_oscuro">Habilitar el modo oscuro</string>
+    <string name="editar_perfil">Editar perfil</string>
+    <string name="dni_medico">DNI medico</string>
+    <string name="nombre_medico">Nombre medico</string>
+    <string name="especialidad">Especialidad</string>
 
     <string-array name="estado_consulta_options">
         <item>pendiente</item>

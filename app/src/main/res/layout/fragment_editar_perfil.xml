@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".ui.EditarPerfilFragment">
+
+    <EditText
+        android:id="@+id/etDniMedico"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/dni_medico"
+        android:inputType="text"
+        android:drawableStart="@drawable/ic_person_outline_black_24dp"
+        android:drawablePadding="10dp"
+        android:padding="12dp"
+        android:enabled="false" />
+
+
+    <EditText
+        android:id="@+id/etNombreMedico"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/nombre_medico"
+        android:inputType="textPersonName"
+        android:drawableStart="@drawable/ic_person_black_24dp"
+        android:drawablePadding="10dp"
+        android:padding="12dp" />
+
+
+    <EditText
+        android:id="@+id/etEspecialidad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/especialidad"
+        android:inputType="phone"
+        android:drawableStart="@drawable/ic_briefcase"
+        android:drawablePadding="10dp"
+        android:padding="12dp" />
+
+    <Button
+        android:id="@+id/btnGuardarPaciente"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/editar_perfil"
+        android:background="@color/black"
+        android:textColor="#FFFFFF"
+        android:padding="12dp" />
+</LinearLayout>

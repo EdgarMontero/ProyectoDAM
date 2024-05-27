@@ -49,6 +49,22 @@ public class Validator {
         return true;
     }
 
+    public static boolean isFechaNacimintoValida(String fecha, Context context) {
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Date fechaNac = sdf.parse(fecha);
+            Date fechaActual = new Date();
+            if (!fechaNac.before(fechaActual)) { // Cambiar "before" a "after"
+                Toast.makeText(context, "La fecha debe ser anterior al día de hoy", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        } catch (ParseException e) {
+            Toast.makeText(context, "Formato de fecha no válido", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+
     public static boolean isPhoneValid(String telefono, Context context) {
         if (!telefono.matches("\\d{9}")) {
             Toast.makeText(context, "El teléfono debe tener 9 dígitos", Toast.LENGTH_SHORT).show();
