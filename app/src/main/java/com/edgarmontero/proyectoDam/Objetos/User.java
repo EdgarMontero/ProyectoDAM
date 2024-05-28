@@ -11,8 +11,6 @@ public class User {
         this.name = name;
 
     }
-
-    // Getters y setters
     public int getIdUser() {
         return idUser;
     }

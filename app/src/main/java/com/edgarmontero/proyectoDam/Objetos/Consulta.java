@@ -9,7 +9,6 @@ public class Consulta {
     private String tipoConsulta;
     private String descripcionConsulta;
     private String fechaConsulta;
-    // Constructor
     public Consulta(String tipoConsulta, String descripcionConsulta, String fechaConsulta, Long idConsulta, String idMedico, String idPaciente) {
         this.tipoConsulta = tipoConsulta;
         this.descripcionConsulta = descripcionConsulta;
@@ -20,7 +19,6 @@ public class Consulta {
     }
 
 
-    // Getters y setters
     public Long getIdConsulta() {
         return idConsulta;
     }

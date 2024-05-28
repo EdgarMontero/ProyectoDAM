@@ -1,9 +1,7 @@
-package com.edgarmontero.proyectoDam.ui;
+package com.edgarmontero.proyectoDam.Fragment;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -19,7 +17,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.edgarmontero.proyectoDam.R;
-import com.edgarmontero.proyectoDam.databinding.FragmentAgendaBinding;
+import com.edgarmontero.proyectoDam.databinding.FragmentHistorialPacienteBinding;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,22 +37,18 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 
-public class Agenda extends Fragment {
+public class HistorialPacienteFragment extends Fragment {
 
-    private FragmentAgendaBinding binding;
-    private String dniMedico;
+    private FragmentHistorialPacienteBinding binding;
+    private String dniPaciente;
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentAgendaBinding.inflate(inflater, container, false);
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-        dniMedico = sharedPreferences.getString("dni_medico", "");
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        binding = FragmentHistorialPacienteBinding.inflate(inflater, container, false);
 
         setupListView();
         setupSearch();
         setupDatePicker();
-        performSearch(dniMedico);
 
         return binding.getRoot();
     }
@@ -65,7 +59,15 @@ public class Agenda extends Fragment {
     }
 
     private void setupSearch() {
-        binding.buttonBuscarPaciente.setOnClickListener(view -> performSearch(dniMedico));
+        binding.buttonBuscarPaciente.setOnClickListener(view -> performSearch(binding.editTextDniPaciente.getText().toString()));
+
+        binding.editTextDniPaciente.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                performSearch(binding.editTextDniPaciente.getText().toString());
+                return true;
+            }
+            return false;
+        });
     }
 
     private void showDatePickerDialog(EditText editText) {
@@ -162,7 +164,7 @@ public class Agenda extends Fragment {
                     try {
                         if (response.getBoolean("success")) {
                             Toast.makeText(getContext(), "Cambios guardados con éxito", Toast.LENGTH_SHORT).show();
-                            performSearch(dniMedico);
+                            performSearch(binding.editTextDniPaciente.getText().toString());
                         } else {
                             Toast.makeText(getContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
                         }
@@ -184,7 +186,6 @@ public class Agenda extends Fragment {
         thread.start();
     }
 
-
     private void performSearch(String dni) {
         Thread thread = new Thread(() -> {
             try {
@@ -200,9 +201,10 @@ public class Agenda extends Fragment {
                 String fechaFin = binding.editTextFechaFin.getText().toString();
                 String estadoConsulta = binding.spinnerEstadoConsulta.getSelectedItem().toString();
 
+
                 StringBuilder data = new StringBuilder();
                 data.append(URLEncoder.encode("dni", "UTF-8")).append("=").append(URLEncoder.encode(dni.toUpperCase(), "UTF-8"));
-                data.append("&").append(URLEncoder.encode("tipo_dni", "UTF-8")).append("=").append(URLEncoder.encode("medico", "UTF-8"));
+                data.append("&").append(URLEncoder.encode("tipo_dni", "UTF-8")).append("=").append(URLEncoder.encode("paciente", "UTF-8"));
 
                 if (!fechaInicio.isEmpty()) {
                     data.append("&").append(URLEncoder.encode("fecha_inicio", "UTF-8")).append("=").append(URLEncoder.encode(fechaInicio, "UTF-8"));
@@ -309,7 +311,7 @@ public class Agenda extends Fragment {
                     try {
                         if (response.getBoolean("success")) {
                             Toast.makeText(getContext(), "Consulta eliminada", Toast.LENGTH_SHORT).show();
-                            performSearch(dniMedico);
+                            performSearch(binding.editTextDniPaciente.getText().toString());
                         } else {
                             Toast.makeText(getContext(), response.getString("message"), Toast.LENGTH_SHORT).show();
                         }

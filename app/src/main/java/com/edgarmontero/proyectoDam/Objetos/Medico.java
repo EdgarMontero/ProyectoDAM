@@ -7,7 +7,6 @@ public class Medico {
     private String especialidad;
     private String horario;
 
-    // Getters y setters
     public String getDniMedico() {
         return dniMedico;
     }

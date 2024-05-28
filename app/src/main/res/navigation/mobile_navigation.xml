@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.edgarmontero.proyectoDam.ui.HomeFragment"
+        android:name="com.edgarmontero.proyectoDam.Fragment.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home">
         <action
@@ -32,7 +32,7 @@
 
     <fragment
         android:id="@+id/nav_historial"
-        android:name="com.edgarmontero.proyectoDam.ui.HistorialPaciente"
+        android:name="com.edgarmontero.proyectoDam.Fragment.HistorialPacienteFragment"
         android:label="@string/menu_historial"
         tools:layout="@layout/fragment_historial_paciente" >
         <action
@@ -42,7 +42,7 @@
 
     <fragment
         android:id="@+id/nav_crear_consulta"
-        android:name="com.edgarmontero.proyectoDam.ui.CrearConsulta"
+        android:name="com.edgarmontero.proyectoDam.Fragment.CrearConsultaFragment"
         android:label="@string/menu_crear_consulta"
         tools:layout="@layout/fragment_crear_consulta" >
         <action
@@ -52,7 +52,7 @@
 
     <fragment
         android:id="@+id/nav_editar_paciente"
-        android:name="com.edgarmontero.proyectoDam.ui.EditarPaciente"
+        android:name="com.edgarmontero.proyectoDam.Fragment.EditarPacienteFragment"
         android:label="@string/menu_editar_paciente"
         tools:layout="@layout/fragment_editar_paciente" >
         <action
@@ -62,7 +62,7 @@
 
     <fragment
         android:id="@+id/nav_agenda"
-        android:name="com.edgarmontero.proyectoDam.ui.Agenda"
+        android:name="com.edgarmontero.proyectoDam.Fragment.AgendaFragment"
         android:label="@string/menu_agenda"
         tools:layout="@layout/fragment_agenda" >
         <action
@@ -72,7 +72,7 @@
 
     <fragment
         android:id="@+id/nav_crear_paciente"
-        android:name="com.edgarmontero.proyectoDam.ui.CrearPaciente"
+        android:name="com.edgarmontero.proyectoDam.Fragment.CrearPacienteFragment"
         android:label="@string/menu_crear_paciente"
         tools:layout="@layout/fragment_crear_paciente" >
         <action
@@ -82,7 +82,7 @@
 
     <fragment
         android:id="@+id/nav_ajustes"
-        android:name="com.edgarmontero.proyectoDam.ui.Ajustes"
+        android:name="com.edgarmontero.proyectoDam.Fragment.AjustesFragment"
         android:label="@string/ajustes"
         tools:layout="@layout/fragment_ajustes" >
         <action
@@ -92,7 +92,7 @@
 
     <fragment
         android:id="@+id/nav_editar_perfil"
-        android:name="com.edgarmontero.proyectoDam.ui.EditarPerfilFragment"
+        android:name="com.edgarmontero.proyectoDam.Fragment.EditarPerfilFragment"
         android:label="@string/editar_perfil"
         tools:layout="@layout/fragment_editar_perfil" >
         <action

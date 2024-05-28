@@ -10,7 +10,6 @@ public class Paciente {
     private String direccion;
     private String telefono;
 
-    // Getters y setters
     public String getDniPaciente() {
         return dniPaciente;
     }

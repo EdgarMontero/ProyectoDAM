@@ -1,4 +1,4 @@
-package com.edgarmontero.proyectoDam.ui;
+package com.edgarmontero.proyectoDam.Fragment;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -115,7 +115,6 @@ public class EditarPerfilFragment extends Fragment {
     private void updateEditTexts(JSONObject jsonObject) throws JSONException {
         getActivity().runOnUiThread(() -> {
             try {
-                // Actualiza los campos con los datos recibidos
                 etNombre.setText(jsonObject.getString("nombre"));
                 etDni.setText(jsonObject.getString("dni_medico"));
                 etEspecialidad.setText(jsonObject.getString("especialidad"));

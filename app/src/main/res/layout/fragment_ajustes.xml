@@ -5,9 +5,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".ui.Ajustes">
+    tools:context=".Fragment.AjustesFragment">
 
-    <!-- Header for settings -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,7 +16,6 @@
         android:paddingBottom="16dp"
         android:textStyle="bold" />
 
-    <!-- Section for notifications -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -34,7 +32,6 @@
         android:text="@string/permitir_notificaciones"
         android:padding="8dp" />
 
-    <!-- Divider line -->
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -42,7 +39,6 @@
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp" />
 
-    <!-- Section for dark mode -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

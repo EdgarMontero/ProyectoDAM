@@ -1,4 +1,4 @@
-package com.edgarmontero.proyectoDam;
+package com.edgarmontero.proyectoDam.Activity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -10,21 +10,18 @@ import android.view.Menu;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.edgarmontero.proyectoDam.ui.HomeFragment;
-import com.google.android.material.snackbar.Snackbar;
+import com.edgarmontero.proyectoDam.R;
+import com.edgarmontero.proyectoDam.databinding.ActivityMenuDesplegableBinding;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.edgarmontero.proyectoDam.databinding.ActivityMenuDesplegableBinding;
-
-public class MenuDesplegable extends AppCompatActivity {
+public class MenuDesplegableActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMenuDesplegableBinding binding;
@@ -103,7 +100,6 @@ public class MenuDesplegable extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_desplegable, menu);
         return true;
     }

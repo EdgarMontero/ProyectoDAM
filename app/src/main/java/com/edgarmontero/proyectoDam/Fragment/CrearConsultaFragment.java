@@ -1,4 +1,4 @@
-package com.edgarmontero.proyectoDam.ui;
+package com.edgarmontero.proyectoDam.Fragment;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -33,7 +33,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.Calendar;
 
-public class CrearConsulta extends Fragment {
+public class CrearConsultaFragment extends Fragment {
 
     private FragmentCrearConsultaBinding binding;
 
@@ -60,7 +60,6 @@ public class CrearConsulta extends Fragment {
         });
 
         etfecha.setOnClickListener(view -> {
-            // Obtiene la fecha y hora actuales
             Calendar calendario = Calendar.getInstance();
             int year = calendario.get(Calendar.YEAR);
             int month = calendario.get(Calendar.MONTH);
@@ -68,20 +67,16 @@ public class CrearConsulta extends Fragment {
             int hour = calendario.get(Calendar.HOUR_OF_DAY);
             int minute = calendario.get(Calendar.MINUTE);
 
-            // Crea el DatePickerDialog y establece el listener para la fecha seleccionada
             DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(),
                     (datePicker, year1, monthOfYear, dayOfMonth) -> {
-                        // Una vez que se ha seleccionado la fecha, crea y muestra el TimePickerDialog
                         TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(),
                                 (timePicker, hourOfDay, minuteOfHour) -> {
-                                    // Formatea la fecha y hora seleccionadas y las establece en el EditText
                                     String fechaSeleccionada = String.format("%04d-%02d-%02d %02d:%02d:%02d", year1, monthOfYear + 1, dayOfMonth, hourOfDay, minuteOfHour, 0);
                                     etfecha.setText(fechaSeleccionada);
                                 }, hour, minute, true);
                         timePickerDialog.show();
                     }, year, month, day);
 
-            // Muestra el DatePickerDialog
             datePickerDialog.show();
         });
     }
@@ -135,7 +130,6 @@ public class CrearConsulta extends Fragment {
                 writer.close();
                 os.close();
 
-                // Procesar respuesta
                 processServerResponse(conn);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -165,8 +159,7 @@ public class CrearConsulta extends Fragment {
             String finalMessage = "Consulta creada con éxito";
             getActivity().runOnUiThread(() -> {
                 Toast.makeText(getContext(), finalMessage, Toast.LENGTH_SHORT).show();
-                // Retroceder al fragmento anterior
-                NavHostFragment.findNavController(CrearConsulta.this)
+                NavHostFragment.findNavController(CrearConsultaFragment.this)
                         .navigate(R.id.action_nav_crear_consulta_to_nav_home);
 
             });

@@ -1,4 +1,4 @@
-package com.edgarmontero.proyectoDam.ui;
+package com.edgarmontero.proyectoDam.Fragment;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -14,39 +14,15 @@ import android.widget.Switch;
 import android.widget.Toast;
 import com.edgarmontero.proyectoDam.R;
 
-public class Ajustes extends Fragment {
+public class AjustesFragment extends Fragment {
 
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
     private static final String PREFERENCES_FILE = "com.edgarmontero.proyectoDam.preferences";
-    private static final String NOTIFICATIONS_KEY = "notifications_enabled";
     private static final String DARK_MODE_KEY = "dark_mode_enabled";
-
-    private String mParam1;
-    private String mParam2;
-
-    public Ajustes() {
-        // Required empty public constructor
-    }
-
-    public static Ajustes newInstance(String param1, String param2) {
-        Ajustes fragment = new Ajustes();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
 
-        // Check saved preferences for dark mode
         SharedPreferences preferences = getActivity().getSharedPreferences(PREFERENCES_FILE, Context.MODE_PRIVATE);
         boolean isDarkModeEnabled = preferences.getBoolean(DARK_MODE_KEY, false);
         if (isDarkModeEnabled) {
@@ -61,7 +37,6 @@ public class Ajustes extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_ajustes, container, false);
 
-        // Switch to enable or disable notifications
         Switch switchNotifications = view.findViewById(R.id.switch_notifications);
         switchNotifications.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -98,12 +73,10 @@ public class Ajustes extends Fragment {
         return view;
     }
 
-    // Function to enable dark mode
     private void enableDarkMode() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
     }
 
-    // Function to disable dark mode
     private void disableDarkMode() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
     }

@@ -1,4 +1,4 @@
-package com.edgarmontero.proyectoDam;
+package com.edgarmontero.proyectoDam.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.edgarmontero.proyectoDam.R;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -32,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // Check saved preferences for dark mode
         SharedPreferences preferences = getSharedPreferences(PREFERENCES_FILE, MODE_PRIVATE);
         boolean isDarkModeEnabled = preferences.getBoolean(DARK_MODE_KEY, false);
         if (isDarkModeEnabled) {
@@ -98,19 +99,17 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             if (parts[0].equals("Login success")) {
-                                Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this, "Inicio de sesión exitosa", Toast.LENGTH_SHORT).show();
 
-                                // Guardar DNI Medico en SharedPreferences
                                 SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
                                 editor.putString("dni_medico", parts[1]);
                                 editor.apply();
 
-                                // Cambio a la actividad del menú principal
-                                Intent intent = new Intent(MainActivity.this, MenuDesplegable.class);
+                                Intent intent = new Intent(MainActivity.this, MenuDesplegableActivity.class);
                                 startActivity(intent);
                             } else {
-                                Toast.makeText(MainActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this, "Error de inicio de sesion", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });

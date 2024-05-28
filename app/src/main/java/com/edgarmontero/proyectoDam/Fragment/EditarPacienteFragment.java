@@ -1,5 +1,6 @@
-package com.edgarmontero.proyectoDam.ui;
+package com.edgarmontero.proyectoDam.Fragment;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -33,12 +34,11 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.Calendar;
 
-
-public class EditarPaciente extends Fragment {
+public class EditarPacienteFragment extends Fragment {
 
     private FragmentEditarPacienteBinding binding;
     private EditText editTextBuscarUsuario, etNombre, etDni, etFechaNacimiento, etDireccion, etTelefono;
-    private Button buttonBuscarUsuario, btnSave;
+    private Button buttonBuscarUsuario, btnGuardar, btnEliminar;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -75,14 +75,20 @@ public class EditarPaciente extends Fragment {
         etFechaNacimiento = binding.etFechaNacimiento;
         etDireccion = binding.etDireccion;
         etTelefono = binding.etTelefono;
-        btnSave = binding.btnGuardarPaciente;
+        btnGuardar = binding.btnGuardarPaciente;
+        btnEliminar = binding.btnEliminarPaciente;
 
         buttonBuscarUsuario.setOnClickListener(v -> {
             String dniPaciente = editTextBuscarUsuario.getText().toString();
             buscarUsuario(dniPaciente);
         });
 
-        btnSave.setOnClickListener(v -> {
+        btnEliminar.setOnClickListener(v -> {
+            String dniPaciente = editTextBuscarUsuario.getText().toString();
+            eliminarUsuario(dniPaciente, false);
+        });
+
+        btnGuardar.setOnClickListener(v -> {
             String dniPaciente = etDni.getText().toString();
             String nombre = etNombre.getText().toString();
             String fechaNacimiento = etFechaNacimiento.getText().toString();
@@ -90,6 +96,63 @@ public class EditarPaciente extends Fragment {
             String telefono = etTelefono.getText().toString();
             savePatient(dniPaciente, nombre, fechaNacimiento, direccion, telefono);
         });
+    }
+
+    private void eliminarUsuario(String dniPaciente, boolean eliminarConsultas) {
+        Thread thread = new Thread(() -> {
+            try {
+                URL url = new URL(getString(R.string.ip) + "eliminarPaciente.php");
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("POST");
+                conn.setDoOutput(true);
+
+                OutputStream os = conn.getOutputStream();
+                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+                String postData = URLEncoder.encode("dni_paciente", "UTF-8") + "=" + URLEncoder.encode(dniPaciente, "UTF-8");
+                postData += "&" + URLEncoder.encode("eliminar_consultas", "UTF-8") + "=" + URLEncoder.encode(eliminarConsultas ? "si" : "no", "UTF-8");
+
+                writer.write(postData);
+                writer.flush();
+                writer.close();
+                os.close();
+
+                int responseCode = conn.getResponseCode();
+                if (responseCode == HttpURLConnection.HTTP_OK) {
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                    String line;
+                    StringBuilder response = new StringBuilder();
+
+                    while ((line = reader.readLine()) != null) {
+                        response.append(line);
+                    }
+
+                    reader.close();
+                    JSONObject jsonObject = new JSONObject(response.toString());
+
+                    if (jsonObject.has("error")) {
+                        String errorMsg = jsonObject.getString("error");
+                        if (jsonObject.has("consultas")) {
+                            getActivity().runOnUiThread(() -> new AlertDialog.Builder(getContext())
+                                    .setTitle("Confirmación")
+                                    .setMessage(errorMsg)
+                                    .setPositiveButton("Sí", (dialog, which) -> eliminarUsuario(dniPaciente, true))
+                                    .setNegativeButton("No", null)
+                                    .show());
+                        } else {
+                            getActivity().runOnUiThread(() -> Toast.makeText(getContext(), errorMsg, Toast.LENGTH_SHORT).show());
+                        }
+                    } else {
+                        getActivity().runOnUiThread(() -> Toast.makeText(getContext(), "Paciente eliminado correctamente.", Toast.LENGTH_SHORT).show());
+                    }
+                } else {
+                    getActivity().runOnUiThread(() -> Toast.makeText(getContext(), "Error en la conexión: " + responseCode, Toast.LENGTH_SHORT).show());
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                getActivity().runOnUiThread(() -> Toast.makeText(getContext(), "Error técnico al procesar la solicitud", Toast.LENGTH_SHORT).show());
+            }
+        });
+        thread.start();
     }
 
     private void buscarUsuario(String dniPaciente) {
@@ -143,7 +206,6 @@ public class EditarPaciente extends Fragment {
         getActivity().runOnUiThread(() -> {
             try {
 
-                // Hace visibles los EditText y el botón de guardar
                 editTextBuscarUsuario.setVisibility(View.GONE);
                 buttonBuscarUsuario.setVisibility(View.GONE);
 
@@ -165,7 +227,9 @@ public class EditarPaciente extends Fragment {
                 Button btnSave = binding.btnGuardarPaciente;
                 btnSave.setVisibility(View.VISIBLE);
 
-                // Actualiza los campos con los datos recibidos
+                Button btnEliminar = binding.btnEliminarPaciente;
+                btnEliminar.setVisibility(View.VISIBLE);
+
                 etNombre.setText(jsonObject.getString("nombre"));
                 etDni.setText(jsonObject.getString("dni_paciente"));
                 etFechaNacimiento.setText(jsonObject.getString("fecha_nacimiento"));
@@ -269,5 +333,4 @@ public class EditarPaciente extends Fragment {
             getActivity().runOnUiThread(() -> Toast.makeText(getContext(), "Error técnico al actualizar los datos", Toast.LENGTH_SHORT).show());
         }
     }
-
 }

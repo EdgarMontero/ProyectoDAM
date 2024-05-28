@@ -1,4 +1,4 @@
-package com.edgarmontero.proyectoDam.ui;
+package com.edgarmontero.proyectoDam.Fragment;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
@@ -41,7 +41,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CrearPaciente extends Fragment {
+public class CrearPacienteFragment extends Fragment {
 
     private FragmentCrearPacienteBinding binding;
     List<User> usersList = new ArrayList<>();
@@ -182,7 +182,6 @@ public class CrearPaciente extends Fragment {
     }
 
     private void savePatientData(String dni, String nombre, String fechaNacimiento, String direccion, String telefono) {
-        // Convertir DNI a mayúsculas y hacerlo final para usar en lambda
         final String finalDni = dni.toUpperCase();
 
         Thread thread = new Thread(() -> {
@@ -201,7 +200,6 @@ public class CrearPaciente extends Fragment {
                 data += "&" + URLEncoder.encode("direccion", "UTF-8") + "=" + URLEncoder.encode(direccion, "UTF-8");
                 data += "&" + URLEncoder.encode("telefono", "UTF-8") + "=" + URLEncoder.encode(telefono, "UTF-8");
 
-                // Obtener el usuario desde el contexto actual
                 String selectedUserName = autoCompleteTextViewUser.getText().toString();
                 Integer userId = userNameToIdMap.get(selectedUserName);
                 if (userId == null) {
@@ -218,7 +216,6 @@ public class CrearPaciente extends Fragment {
                 writer.close();
                 os.close();
 
-                // Procesar respuesta
                 processServerResponse(conn);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -248,8 +245,7 @@ public class CrearPaciente extends Fragment {
             String finalMessage = "Paciente guardado con éxito";
             getActivity().runOnUiThread(() -> {
                 Toast.makeText(getContext(), finalMessage, Toast.LENGTH_SHORT).show();
-                // Retroceder al fragmento anterior
-                NavHostFragment.findNavController(CrearPaciente.this)
+                NavHostFragment.findNavController(CrearPacienteFragment.this)
                         .navigate(R.id.action_nav_crear_paciente_to_nav_home);
 
             });
